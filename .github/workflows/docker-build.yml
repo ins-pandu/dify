@@ -1,12 +1,16 @@
 name: Build docker image
 
 on:
-  pull_request:
-    branches:
-      - "main"
-    paths:
-      - api/Dockerfile
-      - web/Dockerfile
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build from'
+        required: true
+        default: 'main'
+      services:
+        description: 'Services to build (api, web, or both)'
+        required: true
+        default: 'both'
 
 concurrency:
   group: docker-build-${{ github.head_ref || github.run_id }}
@@ -14,7 +18,7 @@ concurrency:
 
 jobs:
   build-docker:
-    runs-on: ubuntu-latest
+    runs-on: executor
     strategy:
       matrix:
         include:
