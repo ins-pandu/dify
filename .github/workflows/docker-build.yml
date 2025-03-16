@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   build-docker:
-    runs-on: ubuntu-latest
+    runs-on: executor
     strategy:
       matrix:
         include:
