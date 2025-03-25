@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   build-docker:
-    runs-on: executor
+    runs-on: arc-runner-set
     strategy:
       matrix:
         include:
